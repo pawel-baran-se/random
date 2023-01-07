@@ -1,5 +1,29 @@
 ﻿<h3>Navbar</h3>
 
-@code {
+@code
+{
+	//public
+	[Inject] public NavigationManager NavigationManager { get; set; }
 
+	public const string HomePageUri = "/";
+	public const string BlogUri = "/blog";
+
+	private bool IsPageActive(string pageToCheckUri)
+	{
+		string[] currentUriSplitBetweenSlashes = NavigationManager.Uri.Split('/').Skip(3).ToArray();
+
+		if (pageToCheckUri == HomePageUri)
+		{
+			if (currentUriSplitBetweenSlashes.Last().Length == 0)
+			{
+				return true;
+			}
+			else
+			{
+
+			}
+		}
+
+		return false;
+	}
 }
