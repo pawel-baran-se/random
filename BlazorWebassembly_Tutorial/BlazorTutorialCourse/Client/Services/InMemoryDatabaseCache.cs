@@ -1,4 +1,5 @@
 ﻿using Shared.Models;
+using System.Net.Http.Json;
 
 namespace Client.Services
 {
@@ -21,6 +22,11 @@ namespace Client.Services
 				_categories = value;
 				NotifyCategoriesDataChanged();
 			}
+		}
+
+		internal async Task GetCategoriesFromDatabaseAndCache()
+		{
+			_categories = await _httpClient.GetFromJsonAsync<List<Category>>("endpoint");
 		}
 
 		internal event Action OnCategoriesDataChanged;
