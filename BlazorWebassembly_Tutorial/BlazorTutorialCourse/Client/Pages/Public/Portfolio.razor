@@ -2,6 +2,11 @@
 
 <Client.Components.Public.Shared.Navbar />
 
+ @if (_showingExamplePortfolioProjectModalWindow == true)
+{
+	<Client.Components.Public.Portfolio.ExamplePortfolioProjectModalWindow ParentMethodToCallOnClickBtnClose="() => _showingExamplePortfolioProjectModalWindow=false" />
+}
+
 <main class="container min-vh-90 py-5">
 	<div class="row">
 		<div class="col">
@@ -21,7 +26,7 @@
 							</p>
 						</div>
 
-						<button class="btn btn-primary stretched-link">
+						<button @onclick="() => _showingExamplePortfolioProjectModalWindow = true" class="btn btn-primary stretched-link">
 							<i class="fas fa-info-circle"></i>More information
 						</button>
 					</div>
@@ -38,7 +43,7 @@
 							</p>
 						</div>
 
-						<button class="btn btn-primary stretched-link">
+						<button @onclick="() => _showingExamplePortfolioProjectModalWindow = true" class="btn btn-primary stretched-link">
 							<i class="fas fa-info-circle"></i>More information
 						</button>
 					</div>
@@ -55,7 +60,7 @@
 							</p>
 						</div>
 
-						<button class="btn btn-primary stretched-link">
+						<button @onclick="() => _showingExamplePortfolioProjectModalWindow = true" class="btn btn-primary stretched-link">
 							<i class="fas fa-info-circle"></i>More information
 						</button>
 					</div>
@@ -69,10 +74,12 @@
 
 @code
 {
+	private bool _showingExamplePortfolioProjectModalWindow = false;
+
 	private string _exampleExcerpt = "Lorem ipsum dolor sit amet, consectetur adipiscing elit." +
-	"Praesent dictum massa ac velit ultricies, a iaculis massa imperdiet. Donec tincidunt porttitor urna," +
-	"vitae semper enim dapibus a. Sed justo urna, tincidunt non elementum in, finibus at diam." +
-	"Fusce eleifend fermentum commodo. Morbi cursus orci non viverra pharetra. Aliquam erat volutpat." +
-	"Sed euismod, purus quis vehicula laoreet, leo enim maximus tortor, vel elementum mauris elit non nulla." +
-	"Sed non risus commodo ante lobortis dignissim in sit amet arcu.Vivamus vitae nisl nec justo dignissim rutrum.";
+									 "Praesent dictum massa ac velit ultricies, a iaculis massa imperdiet. Donec tincidunt porttitor urna," +
+									 "vitae semper enim dapibus a. Sed justo urna, tincidunt non elementum in, finibus at diam." +
+									 "Fusce eleifend fermentum commodo. Morbi cursus orci non viverra pharetra. Aliquam erat volutpat." +
+									 "Sed euismod, purus quis vehicula laoreet, leo enim maximus tortor, vel elementum mauris elit non nulla." +
+									 "Sed non risus commodo ante lobortis dignissim in sit amet arcu.Vivamus vitae nisl nec justo dignissim rutrum.";
 }

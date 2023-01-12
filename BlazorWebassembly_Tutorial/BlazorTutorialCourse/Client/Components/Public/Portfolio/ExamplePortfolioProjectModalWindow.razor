@@ -15,7 +15,7 @@
 					</div>
 
 					<div class="carousel-inner">
-						<div class="carousel-item-active">
+						<div class="carousel-item active">
 							<a href="assets/img/publicbackgrounds/bg-motherboard-dev.jpg" target="_blank">
 								<img src="assets/img/publicbackgrounds/bg-motherboard-dev.jpg" class="d-block w-100" alt="Portfolio project carousel img"/>
 							</a>
@@ -24,7 +24,7 @@
 
 						<div class="carousel-item">
 							<a href="assets/img/publicbackgrounds/bg-motherboard.jpg" target="_blank">
-								<img src="assets/img/publicbackgrounds/bg-motherboard-dev.jpg" class="d-block w-100" alt="Portfolio project carousel img"/>
+								<img src="assets/img/publicbackgrounds/bg-motherboard.jpg" class="d-block w-100" alt="Portfolio project carousel img"/>
 							</a>
 
 						</div>
@@ -52,11 +52,11 @@
 				</p>
 
 				<a href="http://dotnet.microsoft.com/apps/aspnet" class="btn btn-lg d-block mx-5 btn-primary mt-5 shadow" target="_blank">
-					<i class="fas fa-laptop-code"></i> Live demo
+					<i class="fas fa-laptop-code"></i>Live demo
 				</a>
 
 				<a href="http://dotnet.microsoft.com/apps/aspnet" class="btn btn-lg d-block mx-5 bg-dark text-white mt-3 shadow" target="_blank">
-					<i class="fas fa-github-square"></i> GitHub Repo
+					<i class="fab fa-github-square"></i>GitHub Repo
 				</a>
 
 				<h1 class="mt-5">Description</h1>
@@ -71,7 +71,7 @@
 				<h1 class="mt-5">Core Features</h1>
 
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary btn-lg shadow" data-bs-dismiss="modal">
+					<button @onclick="CloseModal" type="button" class="btn btn-primary btn-lg shadow" data-bs-dismiss="modal">
 						Close
 					</button>
 				</div>
@@ -80,12 +80,19 @@
 	</div>
 </div>
 
+@if (_showBackdrop == true)
+{
+	<div class="modal-backdrop fade show">
+
+	</div>
+}
+
 @code
 {
 	[Parameter] public EventCallback ParentMethodToCallOnClickBtnClose { get; set; }
 	private string _modalDisplay = null;
 	private string _modalClass = null;
-	private bool _shodBackdrop = false;
+	private bool _showBackdrop = false;
 
 	protected override void OnInitialized() => ShowModal();
 
@@ -93,14 +100,14 @@
 	{
 		_modalDisplay = "block;";
 		_modalClass = "show";
-		_shodBackdrop = true;
+		_showBackdrop = true;
 	}
 
 	private void CloseModal()
 	{
 		_modalDisplay = "None;";
 		_modalClass = string.Empty;
-		_shodBackdrop = false;
+		_showBackdrop = false;
 		ParentMethodToCallOnClickBtnClose.InvokeAsync();
 	}
 
