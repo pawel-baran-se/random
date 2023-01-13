@@ -1,11 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Shared.Models;
+using System.Runtime.CompilerServices;
 
 namespace Server.Data
 {
 	public class AppDBContext : DbContext
 	{
 		public DbSet<Category> Categories { get; set; }
+		public DbSet<Post> Posts { get; set; }
 
 		public AppDBContext(DbContextOptions<AppDBContext> options) : base(options)
 		{
@@ -15,6 +17,7 @@ namespace Server.Data
 		{
 			base.OnModelCreating(modelBuilder);
 
+			#region Categories seed
 			Category[] categoriesToSeed = new Category[3];
 
 			for (int i = 1; i < 4; i++)
@@ -29,6 +32,14 @@ namespace Server.Data
 			}
 
 			modelBuilder.Entity<Category>().HasData(categoriesToSeed);
+			#endregion
+
+			modelBuilder.Entity<Post>()
+				.HasOne(post => post.Category)
+				.WithMany(category => category.Posts)
+				.HasForeignKey(post => post.CategoryId);
+
+
 		}
 	}
 }
