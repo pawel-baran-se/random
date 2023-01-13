@@ -37,7 +37,7 @@ namespace Shared.Models
 
 		[Required]
 		public int CategoryId { get; set; }
-		[JsonIgnore]
+
 		public Category Category { get; set; }
 	}
 }

@@ -30,7 +30,7 @@ namespace Server.Controllers
 		}
 
 		[HttpGet("withposts")]
-		public async Task<IActionResult> GetWithPosts(bool withPosts)
+		public async Task<IActionResult> GetWithPosts()
 		{
 
 			List<Category> categories = await _appDBContext.Categories
