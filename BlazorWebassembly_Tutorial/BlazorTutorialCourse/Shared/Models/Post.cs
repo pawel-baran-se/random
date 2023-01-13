@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace Shared.Models
 {
@@ -36,6 +37,7 @@ namespace Shared.Models
 
 		[Required]
 		public int CategoryId { get; set; }
+		[JsonIgnore]
 		public Category Category { get; set; }
 	}
 }
