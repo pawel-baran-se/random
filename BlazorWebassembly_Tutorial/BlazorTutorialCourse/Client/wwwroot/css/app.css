@@ -52,13 +52,13 @@ body{
     border-color: #a68f00;
 }
 
-.admin-index-thumbnail.image {
+.admin-index-thumbnail-image {
     display: block;
     width: 100%;
     height: auto;
 }
 
-.admin-crud-index-thumbnail.image {
+.admin-crud-index-thumbnail-image {
     display: block;
     width: 50%;
 }
