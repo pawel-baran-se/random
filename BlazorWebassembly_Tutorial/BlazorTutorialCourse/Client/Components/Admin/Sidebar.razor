@@ -1,0 +1,40 @@
+﻿
+@code
+{
+	[Inject] NavigationManager NavigationManager { get; set; }
+
+	private const string AdminIndexPageUri = "/admin";
+	private static string s_adminCategoriesPageUri = $"{AdminIndexPageUri}/categories";
+	private static string s_adminPostsPageUri = $"{AdminIndexPageUri}/posts";
+
+	private bool IsPageActive(string pageToCheckUri)
+	{
+		string[] currentUriSplitBetweenSlashes = NavigationManager.Uri.Split('/').Skip(2).ToArray();
+
+		if (pageToCheckUri == AdminIndexPageUri)
+		{
+			if (currentUriSplitBetweenSlashes.Last() == "admin")
+			{
+				return true;
+			}
+		}
+		else
+		{
+			string[] pageToCheckUriSplitBetweenSlashes = pageToCheckUri.Split('/').Skip(2).ToArray();
+
+			foreach (string currentUriPart in currentUriSplitBetweenSlashes)
+			{
+				foreach (string pageToCheckUriPart in pageToCheckUriSplitBetweenSlashes)
+				{
+					if (pageToCheckUriPart == currentUriPart)
+					{
+						return true;
+					}
+				}
+			}
+		}
+
+		return false;
+	}
+
+}
